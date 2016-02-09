@@ -5,13 +5,10 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var routes = require('./routes/index');
-var users = require('./routes/users');
-
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs-mate'));
 
@@ -27,9 +24,17 @@ app.use(session({
 }));
 app.use('/public', express.static(path.join(__dirname, 'public')));
 
-//the following 2 things are the routes that will be handling stuff like login, etc.
-app.use('/', routes);
-app.use('/users', users);
+app.use('/', require('./routes/index'));
+app.use('/api/user', require('./routes/user'));
+
+app.use('/course', require('./routes/course/course-web'));
+app.use('/api/course', require('./routes/course/course-api'));
+
+app.use('/faculty', require('./routes/faculty/faculty-web'));
+app.use('/api/faculty', require('./routes/faculty/faculty-api'));
+
+app.use('/student', require('./routes/student/student-web'));
+app.use('/api/student', require('./routes/student/student-api'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
