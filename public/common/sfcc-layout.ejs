@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<!-- <link rel="stylesheet" href="/public/css/courses.css"> -->
+	<script src="/node_modules/jquery/dist/jquery.js"></script>
+
+	<!-- this runs the broadcaster, which will create a global object any code can use after this point -->
+	<!-- <script src="/public/js/common/broadcaster.js"></script> -->
+</head>
+<body>
+<div class="Container">
+
+	<div id="TopBarAndNav">
+		<span id="SFCC">Star Fleet Community College</span>
+			<span id="Nav">
+				<a href="/coursecatalog">Course Catalog</a>
+				<a href="/findacourse">Find a Course</a>
+				<a href="">We Ran Out of Money</a>
+				<span id="LogMeIn" style="display: none">
+					<a href="javascript:">Log In</a>
+				</span>
+				<span id="CreateLoginLink" style="display: none">
+					<a href="javascript:">New User?</a>
+				</span>
+				<span id="LogOut" style="display: none">
+					<a href="javascript:">Log Out</a>
+				</span>
+			</span>
+	</div>
+
+	<!-- %-partial('createnewlogin')%
+
+	%-partial('logindash')%
+
+	%-partial('activedash')%
+
+	%-body% -->
+
+</div>
+<script src="/public/js/studentlogin.js"></script>
+</body>
+</html>
