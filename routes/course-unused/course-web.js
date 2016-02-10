@@ -1,5 +1,5 @@
 /**
- * This file handles web (i.e. HTML) requests for faculty pages
+ * This file handles web (i.e. HTML) requests for course-related pages
  *
  * These are for human consumption, and not for programs to use (since these routes return HTML)
  *
@@ -9,10 +9,6 @@ var express = require('express');
 var router = express.Router();
 
 module.exports = router;
-
-router.get('/', function(req, res) {
-	res.render('course/catalog');
-});
 
 router.get('/info/:guid', function(req, res) {
 	res.render('course/info', { guid: req.params.guid });

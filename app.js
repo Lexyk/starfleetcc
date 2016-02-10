@@ -22,19 +22,19 @@ app.use(session({
 	resave: false,
 	saveUninitialized: true
 }));
-app.use('/public', express.static(path.join(__dirname, 'public')));
+
+//TODO: what are the lines below doing?? what does '/course' mean?
+app.use('/public', express.static('/my/dir/public'));
+app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
 app.use('/', require('./routes/index'));
-app.use('/api/user', require('./routes/user'));
+app.use('/', require('./routes/user'));
 
-app.use('/course', require('./routes/course/course-web'));
-app.use('/api/course', require('./routes/course/course-api'));
-
-app.use('/faculty', require('./routes/faculty/faculty-web'));
-app.use('/api/faculty', require('./routes/faculty/faculty-api'));
-
-app.use('/student', require('./routes/student/student-web'));
-app.use('/api/student', require('./routes/student/student-api'));
+//app.use('/course', require('./routes/course/course-web'));
+//app.use('/api/course', require('./routes/course/course-api'));;
+//
+//app.use('/student', require('./routes/student/student-web'));
+//app.use('/api/student', require('./routes/student/student-api'));
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
