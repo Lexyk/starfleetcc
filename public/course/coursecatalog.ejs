@@ -1,0 +1,23 @@
+<%
+ layout('common/sfcc-layout');
+  %>
+
+<span id="subjectTitlesBox">
+ <ul class="listToLinks" id="subjectTitles"></ul>
+</span>
+
+<span id="coursesInSubjectBox" style="display: none">
+ <ul id="coursesInSubject"></ul>
+</span>
+
+<div style="clear:both"></div>
+
+<div id="courseQuickInfoBox" class="info-box" style="display: none">
+ <span class="course-page-button"></span>
+ <span style="clear:both"></span>
+ <div>Course ID: <span class="guid-text"></span> </div>
+ <div>Course level: <span class="course-level"></span></div>
+ <ul class="staff-list">Faculty:</ul>
+</div>
+
+<script src="/public/course/coursecatalog.js"></script>

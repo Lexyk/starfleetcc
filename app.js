@@ -24,7 +24,7 @@ app.use(session({
 }));
 
 //TODO: what are the lines below doing?? what does '/course' mean?
-app.use('/public', express.static('/my/dir/public'));
+app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 
 app.use('/', require('./routes/index'));

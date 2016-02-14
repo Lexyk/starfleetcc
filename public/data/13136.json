@@ -1,0 +1,178 @@
+{
+  "current_language": "en",
+  "languages": {
+    "321": {
+      "title": "English",
+      "uri": ""
+    }
+  },
+  "title": "A Global History of Architecture",
+  "course_about_uri": "\/course\/representations-hivaids-davidsonx-d002",
+  "created": "2013-12-18T11:04:06-05:00",
+  "changed": "2015-09-19T18:37:19-04:00",
+  "display_course_number": "D002",
+  "course_id": "DavidsonX\/D002\/2014_T3",
+  "subtitle": "We will explore how HIV\/AIDS has been portrayed in diverse genres through the perspectives of the scientist and the literary critic.",
+  "description": "\u003Ch4\u003E*Note - This is an Archived course*\u003C\/h4\u003E\r\n\r\n\u003Cp\u003EThis class engages students in a transdisciplinary conversation about representations of HIV\/AIDS: in science writing, journalism, visual art, literature, drama, and popular culture. We believe that scientists and cultural critics can learn valuable lessons from one another, even as they create their own responses to HIV\/AIDS. Today, over 30 years since the first scientific reports of HIV\/AIDS, the pandemic remains a major health concern throughout the world. But, rays of hope have led to speculation that an AIDS-free generation may be possible. In such a timely moment, it is essential for us to connect across the \u0022two cultures\u0022 as we consider the social and scientific implications of HIV\/AIDS.\u003C\/p\u003E\r\n\r\n\u003Chr \/\u003E\r\n\u003Cp\u003EThis is a past\/archived course. At this time, you can only explore this course in a self-paced fashion. Certain features of this course may not be active, but many people enjoy watching the videos and working with the materials. Make sure to check for reruns of this course.\u003C\/p\u003E\r\n",
+  "extra_description": {
+    "title": "",
+    "content": ""
+  },
+  "what_you_will_learn": "\u003Cul\u003E\r\n\t\u003Cli\u003EThe basics of how to do literary analysis and how to read a scientific article\u003C\/li\u003E\r\n\t\u003Cli\u003EThe basics of the biology of HIV\/AIDS\u003C\/li\u003E\r\n\t\u003Cli\u003EWhat the arts and sciences have in common in creating knowledge\u003C\/li\u003E\r\n\t\u003Cli\u003EHow words and images reflect the evolving history of HIV\/AIDS\u003C\/li\u003E\r\n\t\u003Cli\u003EWhat we can learn from the personal experiences of those living with HIV\/AIDS\u003C\/li\u003E\r\n\t\u003Cli\u003ECurrent developments and controversies in HIV\/AIDS and how the arts \u0026amp; sciences have responded to them\u003C\/li\u003E\r\n\t\u003Cli\u003EWhy it matters that artists \u0026amp; scientists talk to one another\u003C\/li\u003E\r\n\u003C\/ul\u003E\r\n",
+  "syllabus": "",
+  "start": "2014-10-06T00:00:00-04:00",
+  "end": "2014-11-17T00:00:00-05:00",
+  "display_start": "Future Dates To Be Announced",
+  "display_start_heading": "Archived",
+  "availability": {
+    "title": "Archived",
+    "uri": "\/course?availability=Archived"
+  },
+  "schools": [
+    {
+      "title": "DavidsonX",
+      "name": "Davidson College",
+      "image": "https:\/\/www.edx.org\/sites\/default\/files\/school\/image\/banner\/davidson_logo_200x101_0_0.png",
+      "uri": "\/school\/davidsonx",
+      "language": "en"
+    }
+  ],
+  "sponsors": [],
+  "subjects": [
+    {
+      "title": "Biology \u0026 Life Sciences",
+      "uri": "\/course\/subject\/biology-life-sciences",
+      "language": "en"
+    },
+    {
+      "title": "Ethics",
+      "uri": "\/course\/subject\/ethics",
+      "language": "en"
+    },
+    {
+      "title": "Humanities",
+      "uri": "\/course\/subject\/humanities",
+      "language": "en"
+    },
+    {
+      "title": "Literature",
+      "uri": "\/course\/subject\/literature",
+      "language": "en"
+    },
+    {
+      "title": "Philosophy \u0026 Ethics",
+      "uri": "\/course\/subject\/philosophy-ethics",
+      "language": "en"
+    }
+  ],
+  "labels": {
+    "verified": {
+      "title": "Verified",
+      "uri": "\/verified-certificate"
+    },
+    "honor": {
+      "title": "Honor",
+      "uri": ""
+    }
+  },
+  "video_transcript_languages": [
+    {
+      "title": "English"
+    }
+  ],
+  "image": "https:\/\/www.edx.org\/sites\/default\/files\/course\/image\/promoted\/dadison_logo_sub_course_image-378x225.jpg",
+  "video": {
+    "image": "https:\/\/www.edx.org\/sites\/default\/files\/styles\/course_video_banner\/public\/course\/image\/featured-card\/d002_hix-aids_course_banner380x168.jpg?itok=uiFXg0XO",
+    "url": "http:\/\/www.youtube.com\/watch?v=CO7FiQwRf_o",
+    "type": "youtube"
+  },
+  "level": {
+    "title": "Introductory",
+    "uri": ""
+  },
+  "length": "7 weeks",
+  "effort": "4 to 6 hours\/week",
+  "prerequisites": "\u003Cp\u003ENo prior college-level experience with biology or literary study is required, though it is recommended that students have completed high school-level biology and literature courses. In the introductory part of the course, we will discuss basic strategies for reading scientific journal articles and doing basic literary interpretation.\u003C\/p\u003E\r\n",
+  "staff": [
+    {
+      "title": "Ann M.  Fox",
+      "display_position": {
+        "title": "",
+        "org": ""
+      },
+      "image": "https:\/\/www.edx.org\/sites\/default\/files\/person\/image\/fox_ann_2013_110x110.jpg",
+      "uri": "\/bio\/ann-m-fox",
+      "language": "en"
+    },
+    {
+      "title": "David R.  Wessner",
+      "display_position": {
+        "title": "",
+        "org": ""
+      },
+      "image": "https:\/\/www.edx.org\/sites\/default\/files\/person\/image\/wessner_dave_2013_110x110.jpg",
+      "uri": "\/bio\/david-r-wessner",
+      "language": "en"
+    },
+    {
+      "title": "Allison Dulin",
+      "display_position": {
+        "title": "",
+        "org": ""
+      },
+      "image": "https:\/\/www.edx.org\/sites\/default\/files\/person\/image\/allison-dulin_photo_shapers-110x110.jpg",
+      "uri": "\/bio\/allison-dulin",
+      "language": "en"
+    },
+    {
+      "title": "Kristen Eshleman",
+      "display_position": {
+        "title": "",
+        "org": ""
+      },
+      "image": "https:\/\/www.edx.org\/sites\/default\/files\/person\/image\/eshelmen-110x110.jpg",
+      "uri": "\/bio\/kristen-eshleman",
+      "language": "en"
+    },
+    {
+      "title": "Olivia Booker",
+      "display_position": {
+        "title": "",
+        "org": ""
+      },
+      "image": "https:\/\/www.edx.org\/sites\/default\/files\/person\/image\/olivia-headshot-110x110.jpg",
+      "uri": "\/bio\/olivia-booker",
+      "language": "en"
+    },
+    {
+      "title": "Paul Brantley",
+      "display_position": {
+        "title": "",
+        "org": ""
+      },
+      "image": "https:\/\/www.edx.org\/sites\/default\/files\/person\/image\/paul-hiv-aids-110x110.jpg",
+      "uri": "\/bio\/paul-brantley",
+      "language": "en"
+    },
+    {
+      "title": "Robert McSwain",
+      "display_position": {
+        "title": "",
+        "org": ""
+      },
+      "image": "https:\/\/www.edx.org\/sites\/default\/files\/person\/image\/robert_headshot-110x110.jpg",
+      "uri": "\/bio\/robert-mcswain",
+      "language": "en"
+    },
+    {
+      "title": "Sara Swanson",
+      "display_position": {
+        "title": "",
+        "org": ""
+      },
+      "image": "https:\/\/www.edx.org\/sites\/default\/files\/person\/image\/sara-hiv-aids-110x110.jpg",
+      "uri": "\/bio\/sara-swanson",
+      "language": "en"
+    }
+  ]
+}

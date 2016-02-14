@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title></title>
-	<!-- <link rel="stylesheet" href="/public/css/courses.css"> -->
+	<link rel="stylesheet" href="/public/common/css/courses.css">
 	<script src="/node_modules/jquery/dist/jquery.js"></script>
 
 	<!-- this runs the broadcaster, which will create a global object any code can use after this point -->
@@ -30,15 +30,15 @@
 			</span>
 	</div>
 
-	<!-- %-partial('createnewlogin')%
+	<%-partial('student/createnewlogin')%>
 
-	%-partial('logindash')%
+	<%-partial('student/logindash')%>
 
-	%-partial('activedash')%
+	<%-partial('student/activedash')%>
 
-	%-body% -->
+	<%-body%>
 
 </div>
-<script src="/public/js/studentlogin.js"></script>
+<script src="/public/student/studentlogin.js"></script>
 </body>
 </html>

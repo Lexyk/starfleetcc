@@ -1,0 +1,63 @@
+<%
+ layout('common/sfcc-layout');
+  %>
+
+<h1>Find a Course</h1>
+
+<form id="FindACourse">
+	<p>
+		<label for="CourseNumber">Enter the guide number for the course that you wish to find:</label>
+		<input type="text" id="CourseNumber">
+
+		<input type="submit" value="Look it up" id="SubmitButton">
+	</p>
+</form>
+
+<div id="ErrorBox" style="display: none;">
+	No courses found. Destroy this computer now.
+</div>
+
+<div id="CourseBox" style="display: none;">
+
+	<div id="CourseTitle"></div>
+	<div class="List">Instructors:</div>
+		<ul id="Staff"></ul>
+	<div id="Level">Course level: <span></span></div>
+	<div class="List">This course is eligible for credit in the following subjects:</div>
+		<ul id="Subjects"></ul>
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="TitleBar">
+	<span id="CourseTitle">Course title goes here</span>
+	<span id="HonorLabel"></span>
+
+	<div style="clear: both"></div>
+</div>
+
+<div id="Subtitle">Course's subtitle</div>
+
+<div id="CourseDescription">Course description will go here</div>
+
+<div class="List">This course is eligible for credit in the following subjects:
+	<ul id="IteratedSubjects"></ul>
+</div>
+
+<div class="List">This course is taught by some of our worst instructors, including:
+	<ul id="Staff"></ul>
+</div> -->
+
+<!-- need to add the /public, to tell the browser to go back to the first slash after the port number -->
+<script src="/public/course/findacourse.js"></script>

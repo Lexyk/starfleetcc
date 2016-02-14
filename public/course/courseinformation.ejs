@@ -1,0 +1,37 @@
+<%
+  layout('common/sfcc-layout');
+  %>
+
+
+<div class="TitleBar">
+	<span id="CourseTitle">Course title goes here</span>
+	<span id="HonorLabel"></span>
+
+	<div style="clear: both"></div>
+</div>
+
+<div id="Subtitle">Course's subtitle</div>
+
+<div id="CourseDescription">Course description will go here</div>
+
+<div class="List">This course is eligible for credit in the following subjects:
+	<ul id="IteratedSubjects"></ul>
+</div>
+
+<div class="List">This course is taught by some of our worst instructors, including:
+	<ul id="Staff"></ul>
+</div>
+
+<span id="SignUpButton" style="display: none">
+	<a href="javascript:">Sign Up</a>
+</span>
+
+<span id="EnrolledButton" style="display: none">
+	<a href="javascript:">You're enrolled in this course</a>
+</span>
+
+<script>
+	console.log('setting the guid');
+	window.coursenumberforindex = <%=coursenumber%>
+</script>
+<script src="/public/course/courseinformation.js"></script>

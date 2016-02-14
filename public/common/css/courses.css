@@ -1,0 +1,237 @@
+html {
+    background-color: #d1cbd1;
+}
+
+body {
+    text-align: left;
+    font-family: "Palatino linotype", trebuchet, arial;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.Container {
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-bottom: 10px;
+    background-color: white;
+}
+
+.TitleBar {
+    margin-top: 20px;
+    margin-left: 15px;
+}
+
+#CourseTitle {
+    font-size: 25px;
+    font-weight: bold;
+    float: left;
+}
+
+#HonorLabel {
+    float: left;
+    background-color: #EDED85;
+    margin-top: 8px;
+    margin-left: 5px;
+}
+
+
+#CourseDescription {
+    margin: 15px;
+}
+
+
+#Subtitle {
+    margin-left: 15px;
+    margin-top: 10px;
+}
+
+
+.List {
+    margin-left: 15px;
+}
+
+ul {
+    margin-top: 0px;
+}
+
+#TopBarAndNav {
+    background-color: rgb(114, 0, 0);
+    padding-top: 15px;
+    padding-bottom: 5px;
+}
+
+#SFCC {
+    margin-left: 5px;
+    font-size: 28px;
+    color: #f5f8ec;
+    font-family: "New York", serif;
+}
+
+#Nav {
+    margin-left: 10px;
+}
+
+#Nav a {
+    text-decoration: none;
+    color: #b8a8a5;
+    font-size: 17px;
+    padding: 4px;
+    margin-left: 1px;
+    margin-right: 1px;
+
+}
+
+#LogOut a {
+    font-size: 17px;
+    padding: 4px;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+#LogMeIn a {
+    font-size: 17px;
+    padding: 4px;
+    margin-left: 1px;
+    margin-right: 1px;
+}
+
+#Nav a:visited {
+    color: #b8a8a5;
+}
+
+#Nav a:hover {
+    color: #8ba8bd;
+}
+
+h1 {
+    margin-left: 10px;
+    font-size: 20px;
+}
+
+p {
+    margin-left: 10px;
+}
+
+#CourseBox, #ErrorBox {
+    margin-left: 20px;
+    box-sizing: border-box;
+    width: 600px;
+    border-style: solid;
+    border-width: 2px;
+    border-color: #646D8E;
+    border-radius: 10px;
+    padding: 10px;
+    background-color: #dad3c4;
+}
+
+#CourseBox li {
+    padding-left: 40px;
+}
+
+#Level {
+    margin-left: 15px;
+    padding-bottom: 10px;
+
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+#subjectTitles {
+    padding-top: 10px;
+    padding-left: 0;
+    margin-left: 20px;
+    font-size: 18px;
+    float: left;
+    display: inline-block;
+}
+
+#subjectTitles a {
+    text-decoration: none;
+    color: black;
+    margin: 3px;
+    display: inline-block;
+}
+
+#coursesInSubjectBox {
+    float: left;
+    box-sizing: border-box;
+    padding: 12px;
+    margin: 20px;
+    border: 1px solid white;
+    background: white;
+    width: 600px;
+
+}
+
+#coursesInSubject li {
+    padding: 6px;
+}
+
+.info-box {
+    background: #f9f3f9;
+    padding: 2px;
+    padding-bottom: 6px;
+    margin-top: 2px;
+}
+
+.course-page-button {
+    background: #f9f3f9;
+    padding: 3px;
+    float: right;
+    margin-top: 5px;
+    margin-right: 5px;
+}
+
+.course-page-button a {
+    text-decoration: none;
+    font-weight: bold;
+    color: #8ba8bd;
+}
+
+#ActiveDash {
+    border-style: solid;
+    border-color: #f9f3f9;
+    background: #f9f3f9;
+    font-size: 18px;
+    color: #8ba8bd;
+}
+
+#ActiveDash > span {
+    padding: 5px;
+    margin-left: 3px;
+    margin-right: 3px;
+}
+
+#Hi {
+    text-transform: none;
+}
+
+#SignUpButton  a {
+    background: #927855;
+    border-radius: 5px;
+    padding: 5px;
+    margin: 15px;
+}
+
+.pageHeading {
+    font-size: 20px;
+    margin: 10px;
+}
+
+.really-cool-box {
+    margin: 10px;
+}
+
+
+
+
+
+
+
+
+
+
