@@ -5,6 +5,7 @@
 	<title></title>
 	<link rel="stylesheet" href="/public/common/css/courses.css">
 	<script src="/node_modules/jquery/dist/jquery.js"></script>
+	<script src="/node_modules/redux/dist/redux.js"></script>
 
 	<!-- this runs the broadcaster, which will create a global object any code can use after this point -->
 	<!-- <script src="/public/js/common/broadcaster.js"></script> -->
@@ -40,5 +41,7 @@
 
 </div>
 <script src="/public/student/studentlogin.js"></script>
+<!-- Following line is to control what scripts are loaded in what order -->
+<%- block('bottomScripts').toString()%>
 </body>
 </html>

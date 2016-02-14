@@ -1,6 +1,7 @@
 <%
   layout('common/sfcc-layout');
-  %>
+  block('bottomScripts', '<script src="/public/course/courseinformation.js"></script>');
+ %>
 
 
 <div class="TitleBar">
@@ -34,4 +35,4 @@
 	console.log('setting the guid');
 	window.coursenumberforindex = <%=coursenumber%>
 </script>
-<script src="/public/course/courseinformation.js"></script>
+

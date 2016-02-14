@@ -75,6 +75,15 @@ if (window.someoneIsLoggedIn === true) {
 	//}
 //});
 
+siteStore.subscribe(function () {
+	var currentState = siteStore.getState();
+
+//TODO: finish this.
+	// TODO: (andre) This will just check the course array,
+	// but we need to have some mechanism for calling
+	// checkIfEnrolledInCourse when the signed in user actually changes (and maybe polling)
+});
+
 function checkIfEnrolledInCourse() {
 	$.ajax({
 		url: '/user/displayusercourses',

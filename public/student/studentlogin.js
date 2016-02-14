@@ -1,3 +1,63 @@
+window.siteStore = Redux.createStore(
+	function (state, action) {
+		if (!state) {
+			state = {
+				someoneIsLoggedIn: null,
+				userEnrolledCourses: []
+			};
+		}
+
+		switch (action.type) {
+			case 'CHECK_IF_ANYONE_IS_LOGGED_IN':
+				return Object.assign({}, state, {
+					someoneIsLoggedIn: action.resultOfUserCheck
+				});
+			//don't need a break here because of the above return, but would otherwise.
+		}
+
+		return state;
+	}
+);
+
+console.log('first', siteStore.getState());
+
+////An action is a plain object with at least one property, which is type
+//siteStore.dispatch({
+//	type: 'USER_LOGGED_IN',
+//	studentWhoLoggedIn: 'lexy'
+//});
+//
+//console.log('second', siteStore.getState());
+
+siteStore.subscribe(function() {
+	console.log('something');
+	var currentState = siteStore.getState();
+
+	if (currentState.someoneIsLoggedIn == null) {
+		$LogOut.css('display', 'none');
+		$LogMeIn.css('display', '');
+		console.log('no one is logged in');
+		$CreateLoginLink.css('display', '');
+	}
+	else {
+		$LogOut.css('display', '');
+		$ActiveDash.css('display', '');
+		$Hi.text('Hi, ' + currentState.someoneIsLoggedIn);
+		$Hi.css('text-transform', 'capitalize');
+		$LogInDash.css('display', 'none');
+		$LogMeIn.css('display', 'none');
+		$CreateLoginLink.css('display', 'none');
+	}
+});
+
+
+
+
+
+
+
+
+
 
 var $LogMeIn = $('#LogMeIn');
 var $LogOut = $('#LogOut');
@@ -13,35 +73,11 @@ function checkWhoAmI() {
 		success: function (data) {
 			console.log('Got info back from whoami');
 
-			// Turn 'data.username' into a boolean by double 'not'ing it
-			// then compare it to window.someoneIsLoggedIn
-			// If we haven't checked the logged in user before, window.someoneIsLoggedIn will be 'undefined'
-			// That means it would be (false === undefined)
-			// If we have previously checked if the user was logged in, it would be
-			// (false === false) which would skip the rest of the code
-			//if (!!data.username === window.someoneIsLoggedIn) {
-				//return;
-			//}
-
-			if (data.username == null) {
-				window.someoneIsLoggedIn = false;
-				$LogOut.css('display', 'none');
-				$LogMeIn.css('display', '');
-				console.log('no one is logged in');
-				$CreateLoginLink.css('display', '');
-			}
-			else {
-				window.someoneIsLoggedIn = data.username;
-				//broadcaster.sendMessage('USER_CONFIRMED');
-				$LogOut.css('display', '');
-				$ActiveDash.css('display', '');
-				console.log(someoneIsLoggedIn);
-				$Hi.text('Hi, ' + window.someoneIsLoggedIn);
-				$Hi.css('text-transform', 'capitalize');
-				$LogInDash.css('display', 'none');
-				$LogMeIn.css('display', 'none');
-				$CreateLoginLink.css('display', 'none');
-			}
+			//An action is a plain object with at least one property, which is type
+			siteStore.dispatch({
+				type: 'CHECK_IF_ANYONE_IS_LOGGED_IN',
+				resultOfUserCheck: data.username
+			});
 		}
 	});
 }
