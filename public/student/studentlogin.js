@@ -8,9 +8,16 @@ window.siteStore = Redux.createStore(
 		}
 
 		switch (action.type) {
-			case 'CHECK_IF_ANYONE_IS_LOGGED_IN':
+			case 'CHECKED_IF_ANYONE_IS_LOGGED_IN':
 				return Object.assign({}, state, {
+					//store says, 'ok, I got an action thats telling me to change something in the state. Now, I
+					//gotta tell all the guys who are susscribed to me that something may have changed.
 					someoneIsLoggedIn: action.resultOfUserCheck
+				});
+
+			case 'CHECK_FOR_USER_COURSES':
+				return Object.assign({}, state, {
+					userEnrolledCourses: action.resultOfCoursesCheck
 				});
 			//don't need a break here because of the above return, but would otherwise.
 		}
@@ -52,13 +59,6 @@ siteStore.subscribe(function() {
 
 
 
-
-
-
-
-
-
-
 var $LogMeIn = $('#LogMeIn');
 var $LogOut = $('#LogOut');
 var $LogInDash = $('#LogInDash');
@@ -75,7 +75,7 @@ function checkWhoAmI() {
 
 			//An action is a plain object with at least one property, which is type
 			siteStore.dispatch({
-				type: 'CHECK_IF_ANYONE_IS_LOGGED_IN',
+				type: 'CHECKED_IF_ANYONE_IS_LOGGED_IN',
 				resultOfUserCheck: data.username
 			});
 		}

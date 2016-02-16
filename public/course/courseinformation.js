@@ -45,44 +45,67 @@ $.ajax({
 	}
 });
 
-/*if (window.someoneIsLoggedIn === undefined) {
-	var noUser = true;
-}
-if (window.someoneIsLoggedIn == false) {
-	var stillNoUser = true;
-}
-if (window.someoneIsLoggedIn == true) {
-	foundUser = true;
-} */
-
-/*console.log('about to check if someone is logged in');
-if (window.someoneIsLoggedIn === true) {
-	console.log(someoneIsLoggedIn + ' is logged in!!!!');
-	broadcaster.sendMessage('USER_CONFIRMED');
-}*/
-
-//Put the following function re:broadcaster in this file, because the function it's calling (checkIfEnrolledInCourse) is
-//in this file!  So it will know what the heck you are talking about.
-//broadcaster.addListener(function(message) {
-	//if (message === 'USER_CONFIRMED') {
-		//checkIfEnrolledInCourse();
-	//}
-	//else if (message === 'USER_LOGIN') {
-		//checkIfEnrolledInCourse();
-	//}
-	//else if (message === 'USER_LOGOUT') {
-		//checkIfEnrolledInCourse();
-	//}
-//});
 
 siteStore.subscribe(function () {
 	var currentState = siteStore.getState();
 
-//TODO: finish this.
+	console.log(window.coursenumberforindex, currentState.userEnrolledCourses);
+
+	if (currentState.someoneIsLoggedIn == null) {
+		$EnrolledButton.css('display', 'none');
+		$SignUpButton.css('display', 'none');
+		return;
+	}
+
+	var conflict = false;
+	for (var m = 0; m < currentState.userEnrolledCourses.length; m++) {
+		if (window.coursenumberforindex == currentState.userEnrolledCourses[m]) {
+			conflict = true;
+			break;
+		}
+	}
+	if (conflict) {
+		console.log(currentState.userEnrolledCourses[m]);
+		console.log('You are signed up for this class');
+		$EnrolledButton.css('display', '');
+		$SignUpButton.css('display', 'none');
+	}
+	else if (!conflict) {
+		$EnrolledButton.css('display', 'none');
+		$SignUpButton.css('display', '');
+	}
+	else {
+		console.log('Enrollment uncertain');
+	}
+
+
+	//TODO: Just before for loop- variable "found it" = false. run through for loop.
+	//TODO: in for loop, if I find it, set it to true. after for loop, look at boolean. break.
+	//TODO: (gets it out of the closest set of braces). whereas return completely leaves function.
+	//TODO: finish this.
 	// TODO: (andre) This will just check the course array,
 	// but we need to have some mechanism for calling
 	// checkIfEnrolledInCourse when the signed in user actually changes (and maybe polling)
 });
+
+//'function wrapping' to keep this stuff 'private'. No more global variables.
+(function() {
+	var mostRecentKnownUserValue;
+
+	siteStore.subscribe(function () {
+		console.log('something');
+		var currentState = siteStore.getState();
+
+		if (currentState.someoneIsLoggedIn == null) {
+			return;
+		}
+		else if (mostRecentKnownUserValue !== currentState.someoneIsLoggedIn) {
+			//below, we're updating the value of currentState.someone... to the value of mostRecentKnownUserValue
+			mostRecentKnownUserValue = currentState.someoneIsLoggedIn;
+			checkIfEnrolledInCourse();
+		}
+	});
+})()
 
 function checkIfEnrolledInCourse() {
 	$.ajax({
@@ -90,21 +113,17 @@ function checkIfEnrolledInCourse() {
 		success: function (response) {
 			console.log("Got the data back regarding enrolled courses", response.data.courses, window.coursenumberforindex);
 
-			for (var m = 0; m < response.data.courses.length; m++) {
-				if (window.coursenumberforindex == response.data.courses[m]) {
-					console.log('You are signed up for this class');
-					var $EnrolledButton = $('#EnrolledButton');
-					$EnrolledButton.css('display', '');
-				}
-				else {
-					$SignUpButton.css('display', '');
-				}
-			}
+			siteStore.dispatch({
+				type: 'CHECK_FOR_USER_COURSES',
+				resultOfCoursesCheck: response.data.courses
+			});
 		}
 	});
 }
 
 var $SignUpButton = $('#SignUpButton');
+var $EnrolledButton = $('#EnrolledButton');
+
 $SignUpButton.on('click', function(evt) {
 	event.preventDefault();
 	console.log(window.coursenumberforindex);

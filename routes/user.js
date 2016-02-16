@@ -165,7 +165,8 @@ router.get('/user/addclass', function(req, res) {
 	}
 
 	res.json({
-		status: 'Got the new course info'
+		status: 'Got the new course info',
+		message: 'Course added!'
 	});
 
 	fs.writeFile('./runtime/usercourses.json', JSON.stringify(userCourses), function (err) {
