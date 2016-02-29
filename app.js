@@ -5,6 +5,33 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
+var mysql      = require('mysql');
+var mysqlsession = mysql.createConnection({
+	host     : 'localhost',
+	user     : 'root',
+	password : 'lexy',
+	database : 'sfcc'
+});
+
+mysqlsession.connect(function(err) {
+	if (err) {
+		console.error('error connecting: ' + err.stack);
+		return;
+	}
+
+	console.log('connected as lexy ' + mysqlsession.threadId);
+
+	// do something
+
+	mysqlsession.query('SELECT count(*) AS cnt FROM students', function(err, rows) {
+		if (err) throw err;
+
+		console.log(rows[0].cnt);
+	});
+
+	mysqlsession.end();
+});
+
 var app = express();
 
 // view engine setup
@@ -12,8 +39,6 @@ app.set('views', path.join(__dirname, 'public'));
 app.set('view engine', 'ejs');
 app.engine('ejs', require('ejs-mate'));
 
-// uncomment after placing your favicon in /public
-//app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
@@ -23,7 +48,6 @@ app.use(session({
 	saveUninitialized: true
 }));
 
-//TODO: what are the lines below doing?? what does '/course' mean?
 app.use('/public', express.static(path.join(__dirname, 'public')));
 app.use('/node_modules', express.static(path.join(__dirname, 'node_modules')));
 

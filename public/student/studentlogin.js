@@ -28,19 +28,13 @@ window.siteStore = Redux.createStore(
 
 console.log('first', siteStore.getState());
 
-////An action is a plain object with at least one property, which is type
-//siteStore.dispatch({
-//	type: 'USER_LOGGED_IN',
-//	studentWhoLoggedIn: 'lexy'
-//});
-//
-//console.log('second', siteStore.getState());
 
 siteStore.subscribe(function() {
 	console.log('something');
 	var currentState = siteStore.getState();
 
 	if (currentState.someoneIsLoggedIn == null) {
+		$ActiveDash.css('display', 'none')
 		$LogOut.css('display', 'none');
 		$LogMeIn.css('display', '');
 		console.log('no one is logged in');
@@ -166,10 +160,6 @@ $LogOut.on('click', function(evt) {
 	$.ajax({
 		url: '/user/loggingout',
 		success: function(data) {
-			//window.location.replace('http://localhost:3000/coursecatalog');
-			//console.log(data.username + ' successfully logged out!')
-
-			//broadcaster.sendMessage('USER_LOGOUT');
 			checkWhoAmI();
 		}
 	})
