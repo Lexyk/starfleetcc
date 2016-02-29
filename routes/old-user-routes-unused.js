@@ -7,17 +7,25 @@
 var fs = require('fs');
 var express = require('express');
 var router = express.Router();
-var mysql = require('mysql');
-function potato() {
-	 return mysql.createConnection({
-		host     : 'localhost',
-		user     : 'root',
-		password : 'lexy',
-		database : 'sfcc'
-	});
-}
 
 module.exports = router;
+
+var userNames = {};
+var userCourses = {};
+
+// Read previously saved users and passwords
+fs.readFile('./runtime/usernames.json', {encoding: 'utf8'}, function (err, data) {
+	//if (err) throw err;
+
+	// if file exists, parse json and set to userNames
+	if (!err) {
+		userNames = JSON.parse(data);
+		console.log('loaded usernames');
+	}
+	else {
+		console.log('Can\'t load usernames');
+	}
+});
 
 /* GET users listing. */
 router.get('/user', function(req, res, next) {
@@ -28,47 +36,7 @@ router.get('/user/newlogin', function(req, res) {
 	var newLoginName = req.query.newusername;
 	var newPass = req.query.newpassword;
 
-	var mysqlsession = potato();
-	mysqlsession.connect(function(err) {
-		if (err) {
-			console.error('error connecting: ' + err.stack);
-			res.json({
-				status: 'failed',
-				message: 'error connecting to database'
-			});
-			return;
-		}
-
-		console.log('connected as lexy ' + mysqlsession.threadId);
-
-		// do something
-		mysqlsession.query('INSERT INTO students SET ?', { username: newLoginName, password: newPass }, function(err){
-			if (err) {
-				console.error('error connecting: ' + err.stack);
-				res.json({
-					status: 'failed',
-					message: 'error creating login'
-				});
-			}
-			else {
-				res.json({
-					status: 'success'
-				});
-			}
-
-		});
-
-
-		/*mysqlsession.query('SELECT count(*) AS cnt FROM students', function(err, rows) {
-			if (err) throw err;
-
-			console.log(rows[0].cnt);
-		}); */
-
-		mysqlsession.end();
-	});
-
-	/*if (userNames[newLoginName]) {
+	if (userNames[newLoginName]) {
 		res.json({
 			status: 'failed',
 			message: 'Login not available',
@@ -97,7 +65,7 @@ router.get('/user/newlogin', function(req, res) {
 
 		// Log the object again to see the changes
 		console.log('after', userNames);
-	} */
+	}
 });
 
 router.get('/user/whoami', function(req, res) {
@@ -129,51 +97,26 @@ router.get('/user/login', function(req, res) {
 			status: 'fail',
 			message: 'the "login" query param is required!'
 		});
-
 		return;
 	}
 
-	var mysqlsession = potato();
+	var correctPass = userNames[login];
+	//var usernameExists = userNames.hasOwnProperty(login);
 
-	mysqlsession.connect(function(err) {
-		if (err) {
-			console.error('error connecting: ' + err.stack);
-			return;
-		}
+	if (typeof correctPass === 'string' && pass === correctPass) {
+		// record who is logged in for the session
+		req.session.loggedInUser = login;
 
-		console.log('connected as lexy ' + mysqlsession.threadId);
-
-		mysqlsession.query('SELECT password FROM students WHERE username = ?', [login], function (error, results) {
-			if (error) {
-				console.error('WARNONG');
-				return;
-			}
-
-			//Remember about typing "debugger;' and checking the debug tab to check out the results array
-			//to check out what's going on in results (just to help me)
-			if (results.length !== 1) {
-				res.json({
-					status: 'failure',
-					message: 'no such user'
-				});
-			}
-			else if (pass !== results[0].password) {
-				res.json({
-					status: 'failure',
-					message: 'password does not match'
-				});
-			}
-			else {
-				req.session.loggedInUser = login;
-				res.json({
-					status: 'success',
-					message: 'You logged in'
-				});
-			}
+		res.json({
+			status: 'loginsuccessful'
 		});
-
-		mysqlsession.end();
-	});
+	}
+	else {
+		res.json({
+			status: 'loginfailed',
+			message: ''
+		});
+	}
 
 });
 

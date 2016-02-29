@@ -135,18 +135,13 @@ $('#studentLoginForm').on('submit', function(evt) {
 			console.log('success-got the data', data.status);
 			var result = data.status;
 
-			if (result === 'loginsuccessful') {
-				console.log('yep');
+			if (result === 'success') {
 				checkWhoAmI();
-				//broadcaster.sendMessage('USER_LOGIN');
-
-				//window.location.replace('http://localhost:3000/coursecatalog');
-
 			}
-			else if (result === 'loginfailed') {
-				console.log('nope');
+			else if (result === 'failure') {
+				console.log(data.message);
 			}
-			else console.log('neither');
+			else console.log('not sure what we got back from the route');
 
 		},
 		error: function() {
