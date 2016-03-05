@@ -84,8 +84,6 @@ siteStore.subscribe(function () {
 	//TODO: (gets it out of the closest set of braces). whereas return completely leaves function.
 	//TODO: finish this.
 	// TODO: (andre) This will just check the course array,
-	// but we need to have some mechanism for calling
-	// checkIfEnrolledInCourse when the signed in user actually changes (and maybe polling)
 });
 
 //'function wrapping' to keep this stuff 'private'. No more global variables.
@@ -109,12 +107,12 @@ siteStore.subscribe(function () {
 
 function checkIfEnrolledInCourse() {
 	$.ajax({
-		url: '/user/displayusercourses',
+		url: '/user/enrolledguids',
 		success: function (response) {
 			console.log("Got the data back regarding enrolled courses", response.data.courses, window.coursenumberforindex);
 
 			siteStore.dispatch({
-				type: 'CHECK_FOR_USER_COURSES',
+				type: 'CHECKED_FOR_USER_COURSES',
 				resultOfCoursesCheck: response.data.courses
 			});
 		}

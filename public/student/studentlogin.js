@@ -15,7 +15,7 @@ window.siteStore = Redux.createStore(
 					someoneIsLoggedIn: action.resultOfUserCheck
 				});
 
-			case 'CHECK_FOR_USER_COURSES':
+			case 'CHECKED_FOR_USER_COURSES':
 				return Object.assign({}, state, {
 					userEnrolledCourses: action.resultOfCoursesCheck
 				});

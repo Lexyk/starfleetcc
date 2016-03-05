@@ -5,33 +5,6 @@ var logger = require('morgan');
 var bodyParser = require('body-parser');
 var session = require('express-session');
 
-var mysql      = require('mysql');
-var mysqlsession = mysql.createConnection({
-	host     : 'localhost',
-	user     : 'root',
-	password : 'lexy',
-	database : 'sfcc'
-});
-
-mysqlsession.connect(function(err) {
-	if (err) {
-		console.error('error connecting: ' + err.stack);
-		return;
-	}
-
-	console.log('connected as lexy ' + mysqlsession.threadId);
-
-	// do something
-
-	mysqlsession.query('SELECT count(*) AS cnt FROM students', function(err, rows) {
-		if (err) throw err;
-
-		console.log(rows[0].cnt);
-	});
-
-	mysqlsession.end();
-});
-
 var app = express();
 
 // view engine setup
