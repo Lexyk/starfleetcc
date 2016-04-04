@@ -14,7 +14,7 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding-bottom: 10px;
-    background-color: white;
+    background: white;
 }
 
 .TitleBar {
@@ -75,7 +75,7 @@ ul {
 #Nav a {
     text-decoration: none;
     color: #b8a8a5;
-    font-size: 17px;
+    font-size: 14px;
     padding: 4px;
     margin-left: 1px;
     margin-right: 1px;
@@ -90,7 +90,7 @@ ul {
 }
 
 #LogMeIn a {
-    font-size: 17px;
+    font-size: 14px;
     padding: 4px;
     margin-left: 1px;
     margin-right: 1px;
@@ -224,6 +224,10 @@ ul {
 
 .really-cool-box {
     margin: 10px;
+}
+
+.error {
+    margin-left: 10px;
 }
 
 

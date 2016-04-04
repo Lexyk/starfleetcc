@@ -34,9 +34,10 @@ siteStore.subscribe(function() {
 	var currentState = siteStore.getState();
 
 	if (currentState.someoneIsLoggedIn == null) {
-		$ActiveDash.css('display', 'none')
+		$ActiveDash.css('display', 'none');
 		$LogOut.css('display', 'none');
-		$LogMeIn.css('display', '');
+		$StudentLogin.css('display', '');
+		$FacultyLogin.css('display', '');
 		console.log('no one is logged in');
 		$CreateLoginLink.css('display', '');
 	}
@@ -46,14 +47,14 @@ siteStore.subscribe(function() {
 		$Hi.text('Hi, ' + currentState.someoneIsLoggedIn);
 		$Hi.css('text-transform', 'capitalize');
 		$LogInDash.css('display', 'none');
-		$LogMeIn.css('display', 'none');
+		$StudentLogin.css('display', 'none');
 		$CreateLoginLink.css('display', 'none');
 	}
 });
 
 
-
-var $LogMeIn = $('#LogMeIn');
+var $StudentLogin = $('#StudentLogin');
+var $FacultyLogin = $('#FacultyLogin');
 var $LogOut = $('#LogOut');
 var $LogInDash = $('#LogInDash');
 var $ActiveDash = $('#ActiveDash');
@@ -84,7 +85,7 @@ $CreateLoginLink.on('click', function(evt) {
 	$CreateNewLogin.css('display', '');
 });
 
-$LogMeIn.on('click', function (evt) {
+$StudentLogin.on('click', function (evt) {
 	evt.preventDefault();
 	$CreateNewLogin.css('display', 'none');
 	$LogInDash.css('display', '');
@@ -94,27 +95,42 @@ $LogMeIn.on('click', function (evt) {
 $('#CreateNewLoginForm').on('submit', function(evt) {
 	evt.preventDefault();
 
+	var $PasswordError = $('#PasswordError');
+
 	var newUsernameEntered = $('#NewUsername').val();
 	var newPasswordEntered = $('#NewPassword').val();
 	var newPasswordConfirmEntered = $('#NewPasswordConfirm').val();
 
 	if (newPasswordConfirmEntered !== newPasswordEntered) {
 		console.log('Passwords must match');
+		$PasswordError.css('display', '').text('The passwords you typed don\'t match');
 	}
 
 	else {
+		$PasswordError.css('display', 'none');
+		var $UsernameError = $('#UsernameError');
 		$.ajax({
 			url: '/user/newlogin?newusername=' + newUsernameEntered + '&newpassword=' + newPasswordEntered,
-			success: function (data) {
-				console.log(data.status);
-				console.log(data.username);
-				// below, checks that the server signed the right person in, gets rid of the new login bar, and checks
-				// whoami function to get the rest of the page displayed correctly now that someone is logged in
-				if (data.username === newUsernameEntered) {
-					$CreateNewLogin.css('display', 'none');
-					checkWhoAmI();
-				}
 
+			success: function (data) {
+				if (data.status == 'failed') {
+					console.log(data.status);
+					console.log(data.message)
+					$UsernameError.css('display', '').html(data.user_message);
+				}
+				else {
+					$UsernameError.css('display', 'none');
+					console.log(data.status);
+					console.log(data.username);
+					// below, checks that the server signed the right person in, gets rid of the new login bar, and checks
+					// whoami function to get the rest of the page displayed correctly now that someone is logged in
+					if (data.username === newUsernameEntered) {
+						$CreateNewLogin.css('display', 'none');
+
+						checkWhoAmI();
+					}
+
+				}
 			}
 	});
 	}

@@ -3,12 +3,31 @@
   %>
 
 <span id="subjectTitlesBox">
- <ul class="listToLinks" id="subjectTitles"></ul>
+  <ul class="listToLinks" id="subjectTitles">
+   <% for (var i = 0; i < recordOfSubjects.length; i++) { %>
+    <li>
+     <a href="/coursecatalog/bysubject/<%= recordOfSubjects[i].subject_id %>">
+      <%= recordOfSubjects[i].subject %>
+     </a>
+    </li>
+   <% } %>
+ </ul>
 </span>
 
-<span id="coursesInSubjectBox" style="display: none">
- <ul id="coursesInSubject"></ul>
-</span>
+<% if (typeof recordOfCourses !== 'undefined') { %>
+
+<span id="coursesInSubjectBox">
+   <ul id="coursesInSubject">
+ <% for (var k = 0; k < recordOfCourses.length; k++) { %>
+ <li>
+  <a href="/coursecatalog/bysubject/<%= recordOfCourses[k].title %>">
+   <%= recordOfCourses[k].title %>
+  </a>
+ </li>
+ <% } %>
+ </ul>
+ </span>
+<% } %>
 
 <div style="clear:both"></div>
 
@@ -20,4 +39,4 @@
  <ul class="staff-list">Faculty:</ul>
 </div>
 
-<script src="/public/course/coursecatalog.js"></script>
+<!-- <script src="/public/course/coursecatalog.js"></script> -->

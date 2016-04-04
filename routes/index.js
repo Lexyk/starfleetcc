@@ -6,6 +6,15 @@
  */
 var express = require('express');
 var router = express.Router();
+var mysql = require('mysql');
+function cauliflower() {
+	return mysql.createConnection({
+		host     : 'localhost',
+		user     : 'root',
+		password : 'lexy',
+		database : 'starfleetcc'
+	});
+}
 
 module.exports = router;
 
@@ -13,8 +22,84 @@ router.get('/', function(req, res) {
 	res.render('homepage');
 });
 
-router.get('/coursecatalog', function(req, res) {
+/*router.get('/coursecatalog', function(req, res) {
 	res.render('course/coursecatalog');
+}); */
+
+router.get('/coursecatalog', function(req, res) {
+	var mysqlsession = cauliflower();
+	mysqlsession.connect(function(err) {
+		if (err) {
+			console.error('error connecting: ' + err.stack);
+			res.json({
+				status: 'failed',
+				message: 'error connecting to database'
+			});
+			return;
+		}
+
+		console.log('connected as lexy ' + mysqlsession.threadId);
+
+		mysqlsession.query('SELECT subject, subject_id FROM subject', function(err, subjectRecords) {
+			if (err) {
+				console.error('error getting subjects: ' + err.stack);
+			}
+			else {
+				res.render('course/coursecatalog', {
+					recordOfSubjects: subjectRecords
+				});
+			}
+		})
+		mysqlsession.end();
+	})
+});
+
+router.get('/coursecatalog/bysubject/:id', function(req, res) {
+	var mysqlsession = cauliflower();
+
+	var subjectId = req.params.id;
+
+	mysqlsession.connect(function(err) {
+		if (err) {
+			console.error('error connecting: ' + err.stack);
+			res.json({
+				status: 'failed',
+				message: 'error connecting to database'
+			});
+			return;
+		}
+
+		console.log('connected as lexy ' + mysqlsession.threadId);
+
+		mysqlsession.query('SELECT subject, subject_id FROM subject', function(err, subjectRecords) {
+			if (err) {
+				console.error('error getting subjects: ' + err.stack);
+				res.json({
+					status: 'failed',
+					message: 'error getting subjects'
+				});
+				return;
+			}
+			else {
+				//The following shows how to reference a js variable in a mysql query (subjectId, which fyi is declared
+				// at the top of this route)
+				mysqlsession.query('SELECT c.title FROM course AS c' +
+					' JOIN course_subject AS cs ON (c.guid = cs.guid)' +
+					' WHERE cs.subject_id = ?', [subjectId], function(err, courseRecords) {
+					if (err) {
+						console.error('error getting courses for that subject' + err.stack);
+					}
+					else {
+						res.render('course/coursecatalog', {
+							recordOfSubjects: subjectRecords,
+							recordOfCourses: courseRecords
+						});
+					}
+				})
+				mysqlsession.end();
+			}
+		});
+	});
 });
 
 //the /courses below is looking for /courses in the url, not in any directory of mine. I set it.

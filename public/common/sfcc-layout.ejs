@@ -19,14 +19,14 @@
 				<a href="/coursecatalog">Course Catalog</a>
 				<a href="/findacourse">Find a Course</a>
 				<a href="">We Ran Out of Money</a>
-				<span id="LogMeIn" style="display: none">
-					<a href="javascript:">Log In</a>
+				<span id="StudentLogin" style="display: none">
+					<a href="javascript:">Students</a>
+				</span>
+				<span id="FacultyLogin" style="display: none">
+					<a href="javascript:">Faculty</a>
 				</span>
 				<span id="CreateLoginLink" style="display: none">
 					<a href="javascript:">New User?</a>
-				</span>
-				<span id="LogOut" style="display: none">
-					<a href="javascript:">Log Out</a>
 				</span>
 			</span>
 	</div>
@@ -41,6 +41,7 @@
 
 </div>
 <script src="/public/student/studentlogin.js"></script>
+<script src="/public/faculty/facultylogin.js"></script>
 <!-- Following line is to control what scripts are loaded in what order -->
 <%- block('bottomScripts').toString()%>
 </body>

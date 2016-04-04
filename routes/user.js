@@ -44,11 +44,21 @@ router.get('/user/newlogin', function(req, res) {
 		// do something
 		mysqlsession.query('INSERT INTO students SET ?', { username: newLoginName, password: newPass }, function(err){
 			if (err) {
-				console.error('error connecting: ' + err.stack);
+				if (err.code = "ERR_DUP_ENTRY") {
+					console.error('error connecting: ' + err.stack);
+					res.json({
+						status: 'failed',
+						message: 'duplicate username',
+						user_message: 'Sorry, pick a different username'
+					})
+				}
+				else {
+					console.error('error connecting: ' + err.stack);
 				res.json({
 					status: 'failed',
 					message: 'error creating login'
 				});
+				}
 			}
 			else {
 				//line below is to log in the new user
@@ -82,6 +92,7 @@ router.get('/user/loggingout', function(req, res) {
 	res.json({
 		username: oldUsername
 	});
+
 });
 
 router.get('/user/login', function(req, res) {
