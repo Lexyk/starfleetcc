@@ -78,21 +78,26 @@ router.get('/coursecatalog/bysubject/:id', function(req, res) {
 					status: 'failed',
 					message: 'error getting subjects'
 				});
-				return;
 			}
 			else {
 				//The following shows how to reference a js variable in a mysql query (subjectId, which fyi is declared
 				// at the top of this route)
-				mysqlsession.query('SELECT c.title FROM course AS c' +
+				mysqlsession.query('SELECT c.title, c.guid FROM course AS c' +
 					' JOIN course_subject AS cs ON (c.guid = cs.guid)' +
 					' WHERE cs.subject_id = ?', [subjectId], function(err, courseRecords) {
 					if (err) {
 						console.error('error getting courses for that subject' + err.stack);
+						res.json({
+							status: 'failed',
+							message: 'error getting courses'
+						});
 					}
 					else {
 						res.render('course/coursecatalog', {
 							recordOfSubjects: subjectRecords,
-							recordOfCourses: courseRecords
+							recordOfCourses: courseRecords,
+							// passing along the subjectId value to the ejs template
+							subjectId: subjectId
 						});
 					}
 				})
@@ -109,11 +114,75 @@ router.get('/findacourse', function(req, res) {
 	res.render('course/findacourse');
 });
 
-router.get('/courseinformation/:guid', function(req, res) {
-	//the second argument below, is a plain object, and this is the way to pass data (you're telling it which json file to refer to!) on to the template (the ejs file)
-	res.render('course/courseinformation', {
-		coursenumber: req.params.guid,
-	});
-});
+router.get('/coursecatalog/bysubject/:id/coursebyguid/:guid', function(req, res) {
+	var mysqlsession = cauliflower();
+
+	var subjectId = req.params.id;
+
+	var courseGuid = req.params.guid;
+
+	mysqlsession.connect(function (err) {
+		if (err) {
+			console.error('error connecting: ' + err.stack);
+			res.json({
+				status: 'failed',
+				message: 'error connecting to database'
+			});
+			return;
+		}
+
+		console.log('connected as lexy ' + mysqlsession.threadId);
+
+		mysqlsession.query('SELECT subject, subject_id FROM subject', function(err, subjectRecords) {
+			if (err) {
+				console.error('error getting subjects: ' + err.stack);
+				res.json({
+					status: 'failed',
+					message: 'error getting subjects'
+				});
+				return;
+			}
+			else {
+				//The following shows how to reference a js variable in a mysql query (subjectId, which fyi is declared
+				// at the top of this route)
+				mysqlsession.query('SELECT c.title, c.guid FROM course AS c' +
+					' JOIN course_subject AS cs ON (c.guid = cs.guid)' +
+					' WHERE cs.subject_id = ?', [subjectId], function(err, courseRecords) {
+					if (err) {
+						console.error('error getting courses for that subject' + err.stack);
+						//////
+						return;
+					}
+
+					else {
+						mysqlsession.query('SELECT c.title, c.guid,' +
+							' c.subtitle, c.description FROM course AS c' +
+							' WHERE c.guid = ?', [courseGuid], function (err, courseInfoRecords) {
+							if (err) {
+								console.error('error getting course info: ' + err.stack);
+								//////
+								return;
+							}
+							else {
+								res.render('course/coursecatalog', {
+									recordOfSubjects: subjectRecords,
+									recordOfCourses: courseRecords,
+									recordOfCourseInfo: courseInfoRecords,
+									// passing along subjectId value to the ejs template
+									subjectId: subjectId
+								});
+							}
+						})
+						mysqlsession.end();
+					};
+					})
+					}
+				});
+					})
+				})
 
 module.exports = router;
+
+
+
+

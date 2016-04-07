@@ -20,7 +20,7 @@
    <ul id="coursesInSubject">
  <% for (var k = 0; k < recordOfCourses.length; k++) { %>
  <li>
-  <a href="/coursecatalog/bysubject/<%= recordOfCourses[k].title %>">
+  <a href="/coursecatalog/bysubject/<%=subjectId%>/coursebyguid/<%= recordOfCourses[k].guid %>">
    <%= recordOfCourses[k].title %>
   </a>
  </li>
@@ -31,12 +31,24 @@
 
 <div style="clear:both"></div>
 
+<% if (typeof recordOfCourseInfo !== 'undefined') { %>
+
+<div id="courseQuickInfoBox" class="info-box">
+ <div><%- recordOfCourseInfo[0].title %></div>
+ <div><%- recordOfCourseInfo[0].guid %></div>
+ <div><%- recordOfCourseInfo[0].subtitle %></div>
+ <div><%- recordOfCourseInfo[0].description %></div>
+</div>
+
+<% } %>
+
+<!--
 <div id="courseQuickInfoBox" class="info-box" style="display: none">
  <span class="course-page-button"></span>
  <span style="clear:both"></span>
  <div>Course ID: <span class="guid-text"></span> </div>
  <div>Course level: <span class="course-level"></span></div>
  <ul class="staff-list">Faculty:</ul>
-</div>
+</div> -->
 
 <!-- <script src="/public/course/coursecatalog.js"></script> -->
